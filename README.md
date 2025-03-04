@@ -1,76 +1,130 @@
-# **URL Shortener 🔗**
+# 🔗 URL Shortener
 
-A simple **URL Shortener API** built with **Node.js**, **Express**, and **MongoDB** that generates short URLs and redirects users to the original URLs.  
+A simple **URL Shortener** API built using **Node.js**, **Express**, and **MongoDB**. Supports **user authentication**, **short URL generation**, and **click tracking** with stats.
+
+## 🚀 Features
+
+- ✅ User authentication (Register/Login)
+- ✅ Generate short URLs
+- ✅ Track click statistics
+- ✅ Get URL details
+- ✅ Delete short URLs
+
+## 🛠️ Installation
+
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/Pushkal-vashishtha/url-shortner.git
+   cd url-shortner/server
+   ```
+
+2. Install dependencies:
+   ```sh
+   npm install
+   ```
+
+3. Set up environment variables in `.env`:
+   ```env
+   MONGO_URI=your_mongodb_connection_string
+   JWT_SECRET=your_secret_key
+   BASE_URL=http://localhost:5000
+   ```
+
+4. Start the server:
+   ```sh
+   npm start  # or nodemon server.js
+   ```
+
+## 🔑 Authentication
+
+### 1️⃣ Register User
+**Endpoint:** `POST /api/auth/register`  
+**Request Body:**
+   ```json
+   {
+     "username": "Pushkal Vashishtha",
+     "email": "p@gmail.com",
+     "password": "Pushkal@123"
+   }
+   ```
+**Response:**
+   ```json
+   {
+     "message": "User registered successfully"
+   }
+   ```
+
+### 2️⃣ Login User
+**Endpoint:** `POST /api/auth/login`  
+**Request Body:**
+   ```json
+   {
+     "email": "p@gmail.com",
+     "password": "Pushkal@123"
+   }
+   ```
+**Response:**
+   ```json
+   {
+     "token": "your_jwt_token"
+   }
+   ```
 
 ---
 
-## **📌 Features**
-- 🔗 **Shorten URLs** and get a unique short URL  
-- 🚀 **Redirect** short URLs to original URLs  
-- 📊 **Track clicks** on shortened URLs  
-- ⏳ **Auto-expiry after 7 days**  
-- 🗄️ **MongoDB database** for URL storage  
+## 🔗 URL Shortening
+
+### 1️⃣ Create Short URL
+**Endpoint:** `POST /api/url/shorten`  
+**Headers:**
+   ```json
+   {
+     "Authorization": "Bearer your_jwt_token"
+   }
+   ```
+**Request Body:**
+   ```json
+   {
+     "longUrl": "https://www.google.com"
+   }
+   ```
+**Response:**
+   ```json
+   {
+     "shortUrl": "http://localhost:5000/abc123"
+   }
+   ```
+
+### 2️⃣ Redirect to Original URL
+**Endpoint:** `GET /:shortUrl`
+- Redirects to the original long URL.
 
 ---
 
-## **🚀 Installation**
-### **1️⃣ Clone the Repository**
-```sh
-git clone https://github.com/Pushkal-vashishtha/url-shortner.git
-cd url-shortner
-```
+## 📊 URL Statistics
 
-### **2️⃣ Install Dependencies**
-```sh
-npm install
-```
-
-### **3️⃣ Set Up Environment Variables**
-Create a `.env` file in the project root and add:
-```env
-PORT=5000
-MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/url-shortener?retryWrites=true&w=majority
-BASE_URL=http://localhost:5000
-```
-
-### **4️⃣ Start the Server**
-```sh
-npm start
-```
-Server runs at **`http://localhost:5000`** 🚀  
+### 1️⃣ Get URL Stats
+**Endpoint:** `GET /api/url/stats/:shortUrl`  
+**Response:**
+   ```json
+   {
+     "originalUrl": "https://www.google.com",
+     "shortUrl": "http://localhost:5000/abc123",
+     "clicks": 5,
+     "createdAt": "2025-03-04T12:00:00Z"
+   }
+   ```
 
 ---
 
-## **📡 API Endpoints**
-### **1️⃣ Shorten a URL**
-- **Endpoint:** `POST /api/url/shorten`
-- **Request Body:**
-  ```json
-  {
-    "originalUrl": "https://example.com"
-  }
-  ```
-- **Response:**
-  ```json
-  {
-    "shortUrl": "http://localhost:5000/abc123"
-  }
-  ```
-
-### **2️⃣ Redirect to Original URL**
-- **Endpoint:** `GET /:shortUrl`
-- **Example:**  
-  ```
-  GET http://localhost:5000/abc123
-  ```
-- **Response:** Redirects to `https://example.com`
+## 📌 Notes
+- **Authentication required** for creating short URLs.
+- **Anyone can access** shortened URLs & stats.
+- **MongoDB** is used for storing users & URLs.
 
 ---
 
-## **📜 License**
-This project is **open-source** under the **MIT License**.  
+## 📜 License
+MIT License
 
----
-
-## **🙌 Contributing**
-Feel free to contribute! Open a PR if you have improvements.  
+🚀 Happy Coding!
