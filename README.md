@@ -85,13 +85,13 @@ A simple **URL Shortener** API built using **Node.js**, **Express**, and **Mongo
 **Request Body:**
    ```json
    {
-     "longUrl": "https://www.google.com"
+     "originalUrl": "https://www.google.com"
    }
    ```
 **Response:**
    ```json
    {
-     "shortUrl": "http://localhost:5000/abc123"
+     "shortUrl": "http://localhost:5000/api/url/abc123"
    }
    ```
 
@@ -109,7 +109,7 @@ A simple **URL Shortener** API built using **Node.js**, **Express**, and **Mongo
    ```json
    {
      "originalUrl": "https://www.google.com",
-     "shortUrl": "http://localhost:5000/abc123",
+     "shortUrl": "http://localhost:5000/api/url/abc123",
      "clicks": 5,
      "createdAt": "2025-03-04T12:00:00Z"
    }
