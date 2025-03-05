@@ -8,7 +8,6 @@ A simple **URL Shortener** API built using **Node.js**, **Express**, and **Mongo
 - ✅ Generate short URLs
 - ✅ Track click statistics
 - ✅ Get URL details
-- ✅ Delete short URLs
 
 ## 🛠️ Installation
 
