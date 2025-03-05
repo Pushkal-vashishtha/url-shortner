@@ -14,7 +14,7 @@ export const shortenURL = async (req, res) => {
         await newUrl.save();
 
         const baseUrl = process.env.BASE_URL || "http://localhost:5000";
-        res.status(201).json({ shortUrl: `${baseUrl}/${shortUrl}` });
+        res.status(201).json({ shortUrl: `${baseUrl}/api/url/${shortUrl}` });
         
         } catch (error) {
         res.status(500).json({ error: "Server error" });
